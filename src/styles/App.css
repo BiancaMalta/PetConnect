@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     width: 100%;
     height: 100%;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif!important;
     background-color: #f0f8ff;
     /* overflow: hidden; Remova se não precisar bloquear a rolagem */
 }
@@ -33,6 +33,7 @@ body, html {
 
 .p {
     margin-top: 80%;
+    font-size: 16px!important;
 }
 
 .logo {
@@ -108,6 +109,17 @@ body, html {
     padding-right: 15px; /* Espaçamento à direita */
     margin: 0 5px; /* Adiciona margem para separar os links */
 }
+/* Aplicar o fundo em todas as páginas exceto a home */
+.page-background {
+    background: url('/public/imagens/SegBack.svg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+/* Específico para a Home (caso precise de um fundo diferente) */
+.home-page {
+    background-color: #f0f8ff; /* Ou outro fundo desejado */
+}
 
 /* Outros estilos */
 .line {
@@ -152,19 +164,95 @@ body, html {
 
 h1 {
     font-size: 2.5rem; /* Tamanho do texto do título */
-    color: #fff; /* Cor do título */
+    color: #000; /* Cor do título */
+    font-weight: 600;
+    font-size: 32px!important;
     margin-bottom: 20px; /* Espaçamento abaixo do título */
 }
 
+.adotar-page {
+    text-align: center;
+}
+
 .pets-grid {
-    display: flex; /* Usar flexbox para alinhar os cartões de pets */
-    justify-content: center; /* Centraliza os cartões horizontalmente */
-    flex-wrap: wrap; /* Permite quebra de linha dos cartões */
-    margin-top: 20px; /* Espaçamento acima da grid de pets */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    transition: filter 0.3s ease; /* Animação suave no desfocamento */
+
 }
 
 .pet-card {
-    margin: 10px; /* Espaçamento entre os cartões de pets */
-    width: 200px; /* Largura dos cartões */
+    width: 200px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.pet-card:hover {
+    transform: scale(1.05);
+}
+
+/* Adiciona o efeito de desfoque quando o modal está aberto */
+.blur-background {
+    filter: blur(5px);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(50, 50, 50, 0.8); /* Fundo escuro semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que o modal estará acima de todos os elementos */
+
+}
+
+.modal-content {
+    background-color: #C4E9F8 !important;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    width: 400px;
+    text-align: center;
+    z-index: 1010; /* Garante que o conteúdo está acima do overlay */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para destacar o card */
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333; /* Cor do botão X */
+
+}
+
+.adopt-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #000;
+    color: white !important;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.adopt-button:hover {
+    background-color: #0056b3;
+}
+
+/* Desfocar fundo quando o modal estiver aberto */
+.modal-open .pets-grid {
+    filter: blur(5px);
 }
 
