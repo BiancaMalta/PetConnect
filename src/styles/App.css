@@ -1,0 +1,170 @@
+/* Estilos para a página inicial */
+body, html {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff;
+    /* overflow: hidden; Remova se não precisar bloquear a rolagem */
+}
+
+.home-content {
+    z-index: 1; /* Garante que o conteúdo esteja acima do menu */
+    padding: 80px 20px; /* Adiciona 20px de padding nas laterais */
+    margin-top: 90%; /* Isso pode ser ajustado, dependendo do layout desejado */
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    height: 100vh; /* Usa a altura total da viewport */
+    background: url('/public/imagens/Home.svg') no-repeat center center fixed; /* Caminho da imagem */
+    background-size: cover; /* Ajusta a imagem para cobrir a tela inteira */
+    position: relative; /* Necessário para o posicionamento absoluto do menu */
+}
+
+.home-header {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Ajuste conforme necessário */
+}
+
+.p {
+    margin-top: 80%;
+}
+
+.logo {
+    width: 150px;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #333;
+    padding: 0 20px;
+    margin-bottom: 30px;
+    background-color: rgba(255, 255, 255, 0.8); /* Para dar contraste com o background */
+    border-radius: 10px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.action-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.action-button:hover {
+    background-color: #444;
+}
+
+/* Estilização do botão do menu sanduíche */
+.navbar {
+    z-index: 1000; /* Garante que o menu esteja acima de outros elementos */
+    background-color: transparent !important; /* Remove o fundo branco da navbar */
+    border: none; /* Remove a borda padrão */
+}
+
+.navbar-toggler {
+    position: absolute; /* Mantenha a posição absoluta */
+    top: 20px; /* Ajuste conforme necessário */
+    left: 20px; /* Alinhado à esquerda */
+}
+
+.navbar-collapse {
+    position: absolute; /* Mantenha a posição absoluta para o menu */
+    top: 70px; /* Posicione abaixo do botão */
+    left: 0;
+    width: 100%; /* Para garantir que ocupa a largura total */
+    display: none; /* Oculta por padrão */
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com opacidade */
+    z-index: 999; /* Abaixo do botão, mas acima do conteúdo */
+}
+
+.navbar-collapse.show {
+    display: block; /* Exibe o menu quando ativo */
+}
+
+.navbar-brand {
+    padding: 0; /* Zera o padding */
+    margin: 0; /* Opcional: zera a margem */
+    padding-left: 20px;
+}
+.navbar-nav .nav-link {
+    padding-left: 15px; /* Espaçamento à esquerda */
+    padding-right: 15px; /* Espaçamento à direita */
+    margin: 0 5px; /* Adiciona margem para separar os links */
+}
+
+/* Outros estilos */
+.line {
+    width: 100%;
+    height: 3px;
+    background-color: #000; /* Cor das linhas do menu */
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin: 5px 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #000; /* Cor do texto do menu */
+    padding: 10px; /* Adiciona padding ao link */
+    display: block; /* Faz o link ocupar toda a largura */
+}
+
+.menu a:hover {
+    color: #007BFF; /* Cor do texto quando passar o mouse */
+}
+
+/* Estilos para a página Adotar */
+.page-background {
+    background: url('/public/imagens/SegBack.svg') no-repeat center center fixed; /* Caminho da imagem */
+    background-size: cover; /* Ajusta a imagem para cobrir a tela inteira */
+    width: 100%;
+    height: 100vh; /* Usa a altura total da viewport */
+    display: flex; /* Usamos flex para centralizar o conteúdo */
+    flex-direction: column; /* Alinha os itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: flex-start; /* Alinha os itens ao topo */
+    padding-top: 100px; /* Espaçamento superior para não sobrepor o menu */
+}
+
+h1 {
+    font-size: 2.5rem; /* Tamanho do texto do título */
+    color: #fff; /* Cor do título */
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+}
+
+.pets-grid {
+    display: flex; /* Usar flexbox para alinhar os cartões de pets */
+    justify-content: center; /* Centraliza os cartões horizontalmente */
+    flex-wrap: wrap; /* Permite quebra de linha dos cartões */
+    margin-top: 20px; /* Espaçamento acima da grid de pets */
+}
+
+.pet-card {
+    margin: 10px; /* Espaçamento entre os cartões de pets */
+    width: 200px; /* Largura dos cartões */
+}
+
