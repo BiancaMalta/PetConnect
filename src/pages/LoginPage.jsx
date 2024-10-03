@@ -1,44 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/App.css';
 import { useAuth } from '../context/AuthContext'; 
 
-
-const Home = () => {
+const LoginPage = () => {
+    const [isRegistered, setIsRegistered] = useState(true);
     const navigate = useNavigate();
-    const { isAuthenticated, userType } = useAuth(); 
+    const { setIsAuthenticated, setUserType } = useAuth(); 
 
-    const irParaAdocao = () => {
-        navigate('/adotar'); // Navega para a página de adoção
-    };
+    const handleLogin = (e) => {
+        e.preventDefault(); 
+        setIsAuthenticated(true);
+        const userType = 'adotante'; 
+        setUserType(userType);
 
-    const irParaDoacao = () => {
-        if (isAuthenticated) {
-            // Redireciona com base no tipo de usuário
-            if (userType === 'doador') {
-                navigate('/meus-cadastros'); 
-            } else if (userType === 'adotante') {
-                navigate('/meus-pedidos'); 
-            }
+        if (userType === 'doador') {
+            navigate('/meus-cadastros');
         } else {
-            navigate('/login'); 
+            navigate('/meus-pedidos'); 
         }
     };
 
+    const handleRegister = (e) => {
+        e.preventDefault(); 
+        setIsAuthenticated(true); // Após registro, o usuário é autenticado
+        setUserType('doador'); // Defina como doador por padrão, ou ajuste conforme necessário
+        navigate('/meus-cadastros'); // Após registro, redireciona para meus cadastros
+    };
+
     return (
-        <div className="home-container">
-            <header className="home-header"></header>
-            <div className="home-content">
-                <p className="description">
-                    Há milhares de pets ansiosos por encontrar um lar cheio de amor e carinho. Você pode fazer a diferença...
+        <div className="page-background">
+            <div className="login-page">
+                <h1>{isRegistered ? 'Login' : 'Registro'}</h1>
+                <form>
+                    <input type="text" placeholder="Email" required />
+                    <input type="password" placeholder="Senha" required />
+                    <button type="submit" onClick={isRegistered ? handleLogin : handleRegister}>
+                        {isRegistered ? 'Entrar' : 'Registrar'}
+                    </button>
+                </form>
+                <p onClick={() => setIsRegistered(!isRegistered)}>
+                    {isRegistered ? 'Não tem conta? Registre-se aqui.' : 'Já tem conta? Faça login aqui.'}
                 </p>
-                <div className="button-container">
-                    <button className="action-button" onClick={irParaAdocao}>Adotar!</button>
-                    <button className="action-button" onClick={irParaDoacao}>Doar!</button>
-                </div>
             </div>
         </div>
     );
 };
 
-export default Home;
+export default LoginPage;
