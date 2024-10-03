@@ -1,50 +1,44 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/App.css';
 import { useAuth } from '../context/AuthContext'; 
 
-const LoginPage = () => {
-    const [isRegistered, setIsRegistered] = useState(true);
+
+const Home = () => {
     const navigate = useNavigate();
-    const { setIsAuthenticated, setUserType } = useAuth(); 
+    const { isAuthenticated, userType } = useAuth(); 
 
-    const handleLogin = (e) => {
-        e.preventDefault(); 
-        // Simule a autenticação bem-sucedida
-        setIsAuthenticated(true); 
-        const userType = 'adotante'; 
-        setUserType(userType); 
+    const irParaAdocao = () => {
+        navigate('/adotar'); // Navega para a página de adoção
+    };
 
-        if (userType === 'doador') {
-            navigate('/meus-cadastros'); 
+    const irParaDoacao = () => {
+        if (isAuthenticated) {
+            // Redireciona com base no tipo de usuário
+            if (userType === 'doador') {
+                navigate('/meus-cadastros'); 
+            } else if (userType === 'adotante') {
+                navigate('/meus-pedidos'); 
+            }
         } else {
-            navigate('/meus-pedidos'); 
+            navigate('/login'); 
         }
     };
 
-    const handleRegister = (e) => {
-        e.preventDefault(); 
-        setIsAuthenticated(true); 
-        setUserType('doador'); 
-        navigate('/meus-cadastros'); 
-    };
-
     return (
-        <div className="page-background">
-            <div className="login-page">
-                <h1>{isRegistered ? 'Login' : 'Registro'}</h1>
-                <form>
-                    <input type="text" placeholder="Email" required />
-                    <input type="password" placeholder="Senha" required />
-                    <button type="submit" onClick={isRegistered ? handleLogin : handleRegister}>
-                        {isRegistered ? 'Entrar' : 'Registrar'}
-                    </button>
-                </form>
-                <p onClick={() => setIsRegistered(!isRegistered)}>
-                    {isRegistered ? 'Não tem conta? Registre-se aqui.' : 'Já tem conta? Faça login aqui.'}
+        <div className="home-container">
+            <header className="home-header"></header>
+            <div className="home-content">
+                <p className="description">
+                    Há milhares de pets ansiosos por encontrar um lar cheio de amor e carinho. Você pode fazer a diferença...
                 </p>
+                <div className="button-container">
+                    <button className="action-button" onClick={irParaAdocao}>Adotar!</button>
+                    <button className="action-button" onClick={irParaDoacao}>Doar!</button>
+                </div>
             </div>
         </div>
     );
 };
 
-export default LoginPage;
+export default Home;
