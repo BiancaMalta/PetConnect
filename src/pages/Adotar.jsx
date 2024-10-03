@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/App.css'; // Adicione estilos para o modal aqui
+import '../styles/App.css'; 
 
 const Adotar = ({ onPageChange }) => {
     const [selectedPet, setSelectedPet] = useState(null); // Para armazenar o pet selecionado
@@ -8,37 +8,35 @@ const Adotar = ({ onPageChange }) => {
 
     // Exemplo de lista de pets (você deve carregar os dados reais aqui)
     const pets = [
-        { id: 1, nome: 'Rex', tipo: 'cachorro', descricao: 'Um cachorro amigável' },
-        { id: 2, nome: 'Mimi', tipo: 'gato', descricao: 'Uma gata amorosa' },
+        { id: 1, nome: 'Breninho lindo', tipo: 'Gato', descricao: '2 anos', localizacao: 'Bairro', foto: 'public/imagens/image.png' },
+        { id: 2, nome: 'Megatron', tipo: 'Gato', descricao: '3 meses', localizacao: 'Bairro', foto: 'url-da-imagem-megatron' },
         // Outros pets...
     ];
 
     // Atualiza o título da página quando o componente é montado
     useEffect(() => {
         if (typeof onPageChange === 'function') {
-            onPageChange(); // Atualiza a página atual para 'adotar'
+            onPageChange(); 
         } else {
             console.error("onPageChange não é uma função");
         }
     }, [onPageChange]);
 
     const handlePetClick = (pet) => {
-        setSelectedPet(pet); // Seleciona o pet e abre o modal
+        setSelectedPet(pet); 
     };
 
     const closeModal = () => {
-        setSelectedPet(null); // Fecha o modal
+        setSelectedPet(null); 
     };
 
     const handleAdoptClick = () => {
-        // Verifica se o usuário está autenticado (substitua pela lógica real)
-        const isAuthenticated = false; // Aqui você deve verificar se o usuário está autenticado
+        const isAuthenticated = false; 
         if (isAuthenticated) {
-            // Lógica de adoção aqui (por exemplo, chamar uma API)
             alert(`Você adotou ${selectedPet.nome}!`);
             closeModal();
         } else {
-            navigate('/login'); // Redireciona para a página de login se não estiver autenticado
+            navigate('/login'); 
         }
     };
 
@@ -46,11 +44,21 @@ const Adotar = ({ onPageChange }) => {
         <div className="page-background">
             <div className="adotar-page">
                 <h1>Adote um Pet</h1>
+                <div className="filter-buttons">
+                    <button>Filtro</button>
+                    <button>Cachorro</button>
+                    <button>Gato</button>
+                    <button>Favoritos</button>
+                </div>
                 <div className={`pets-grid ${selectedPet ? 'blur-background' : ''}`}>
                     {pets.map((pet) => (
                         <div key={pet.id} className="pet-card" onClick={() => handlePetClick(pet)}>
-                            <h3>{pet.nome}</h3>
-                            <p>{pet.tipo}</p>
+                            <img src={pet.foto} alt={pet.nome} className="pet-image" />
+                            <div className="pet-info">
+                                <h3>{pet.nome}</h3>
+                                <p>{pet.descricao}</p>
+                                <p>{pet.localizacao}</p>
+                            </div>
                         </div>
                     ))}
                 </div>
