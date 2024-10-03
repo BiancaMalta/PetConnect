@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
-import '../styles/App.css'; // Adicione estilos para o modal aqui
+import { useNavigate } from 'react-router-dom'; 
+import '../styles/App.css'; 
 
 const Doar = () => {
     const [selectedPet, setSelectedPet] = useState(null); // Para armazenar o pet selecionado
-    const navigate = useNavigate(); // Inicializa useNavigate
+    const navigate = useNavigate(); 
 
     // Exemplo de lista de pets (você deve carregar os dados reais aqui)
     const pets = [
@@ -23,13 +23,13 @@ const Doar = () => {
 
     const handleDonateClick = () => {
         // Verifica se o usuário está autenticado (opcional)
-        const isAuthenticated = false; // Substitua pela lógica real de autenticação
+        const isAuthenticated = false; 
         if (isAuthenticated) {
             // Lógica de doação aqui (por exemplo, chamar uma API)
             alert(`Você doou ${selectedPet.nome}!`);
             closeModal();
         } else {
-            navigate('/login'); // Redireciona para a página de login se não estiver autenticado
+            navigate('/login'); 
         }
     };
 
