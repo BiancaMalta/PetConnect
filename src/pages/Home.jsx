@@ -1,15 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/App.css';
-import { useAuth } from '../context/AuthContext'; // Caminho correto para AuthContext
+import { useAuth } from '../context/AuthContext'; 
 
 
 const Home = () => {
     const navigate = useNavigate();
-    const { isAuthenticated, userType } = useAuth(); // Utilize o contexto
+    const { isAuthenticated, userType } = useAuth(); 
 
     const irParaAdocao = () => {
-        navigate('/adotar'); // Navega para a página de adoção
+        navigate('/adotar'); 
     };
 
     const irParaDoacao = () => {
@@ -21,7 +21,7 @@ const Home = () => {
                 navigate('/meus-pedidos'); // Redireciona adotante para meus pedidos
             }
         } else {
-            navigate('/login'); // Redireciona para a página de login se não estiver autenticado
+            navigate('/login');
         }
     };
 
