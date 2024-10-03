@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import image from 'public/imagens/image.png'; 
 
 const PetCard = ({ petName, imageUrl }) => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const PetCard = ({ petName, imageUrl }) => {
 
     return (
         <div className="pet-card" onClick={handleCardClick}>
-            <img src={imageUrl} alt={petName} className="pet-image" />
+            <img src={image}  alt={petName} className="pet-image" />
             <h4>{petName}</h4>
         </div>
     );
