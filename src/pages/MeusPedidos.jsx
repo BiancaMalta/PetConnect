@@ -1,65 +1,47 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
-const MeusCadastros = () => {
-    const [selectedAnimal, setSelectedAnimal] = useState(null);
-    const [modalOpen, setModalOpen] = useState(false);
-
-    // Simulação de animais cadastrados e solicitações
-    const animaisCadastrados = [
-        { id: 1, nome: 'Rex', pedidos: 5, foto: 'url-da-imagem-rex' },
-        { id: 2, nome: 'Mimi', pedidos: 3, foto: 'url-da-imagem-mimi' },
-    ];
+const MeusPedidos = () => {
+    const [selectedRequest, setSelectedRequest] = useState(null);
 
     const solicitacoes = [
-        { animalId: 1, solicitantes: [{ nome: 'João', id: 1 }, { nome: 'Maria', id: 2 }] },
-        { animalId: 2, solicitantes: [{ nome: 'Carlos', id: 3 }] },
+        { id: 1, nomePet: 'Rex', status: 'Em análise', imgSrc: 'link_da_imagem_rex.jpg' }, // Adicione a URL da imagem
+        { id: 2, nomePet: 'Mimi', status: 'Aprovado', imgSrc: 'link_da_imagem_mimi.jpg' }, // Adicione a URL da imagem
+        // Outras solicitações
     ];
 
-    const handleAnimalClick = (animal) => {
-        setSelectedAnimal(animal);
-        setModalOpen(true);
+    const handleViewProfile = (solicitacao) => {
+        console.log(`Visualizando perfil do pet: ${solicitacao.nomePet}`);
     };
 
-    const closeModal = () => {
-        setModalOpen(false);
-        setSelectedAnimal(null);
+    const handleChat = (solicitacao) => {
+        setSelectedRequest(solicitacao);
     };
 
     return (
         <div className="page-background">
-            <div>
-                <h1>Meus Cadastros</h1>
-                <Link to="/cadastrar-animal">Cadastrar Novo Animal</Link>
+            <div className="meus-pedidos-page">
+                <h1>Meus Pedidos de Adoção</h1>
                 <ul>
-                    {animaisCadastrados.map(animal => (
-                        <li key={animal.id} onClick={() => handleAnimalClick(animal)}>
-                            {animal.nome} - {animal.pedidos} pedidos
+                    {solicitacoes.map(solicitacao => (
+                        <li key={solicitacao.id}>
+                            <img src={solicitacao.imgSrc} alt={solicitacao.nomePet} className="pet-image" />
+                            <span>
+                                {solicitacao.nomePet} - {solicitacao.status}
+                            </span>
+                            <button onClick={() => handleViewProfile(solicitacao)}>Perfil</button>
+                            <button onClick={() => handleChat(solicitacao)}>Chat</button>
                         </li>
                     ))}
                 </ul>
 
-                {modalOpen && selectedAnimal && (
-                    <div className="page-background">
-                        <div className="modal-overlay">
-                            <div className="modal-content">
-                                <button className="close-modal" onClick={closeModal}>X</button>
-                                <h2>{selectedAnimal.nome}</h2>
-                                <img src={selectedAnimal.foto} alt={selectedAnimal.nome} style={{ width: '200px', height: 'auto' }} />
-                                <p>Solicitações de Adoção:</p>
-                                <ul>
-                                    {solicitacoes
-                                        .find(s => s.animalId === selectedAnimal.id)
-                                        ?.solicitantes.map(s => (
-                                            <li key={s.id}>
-                                                {s.nome}
-                                                <Link to={`/perfil/${s.id}`}> Ver Perfil </Link>
-                                                <Link to={`/chat/${s.id}`}> Chat </Link>
-                                            </li>
-                                        ))}
-                                </ul>
-                            </div>
+                {/* Chat com o doador */}
+                {selectedRequest && (
+                    <div className="chat">
+                        <h2>Conversando sobre {selectedRequest.nomePet}</h2>
+                        <div className="chat-box">
+                            {/* Lógica para exibir mensagens */}
                         </div>
+                        <input type="text" placeholder="Escreva uma mensagem" />
                     </div>
                 )}
             </div>
@@ -67,4 +49,4 @@ const MeusCadastros = () => {
     );
 };
 
-export default MeusCadastros;
+export default MeusPedidos;
