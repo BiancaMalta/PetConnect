@@ -1,83 +1,52 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-import '../styles/MeusCadastros.css';
+import '../styles/MeusPedidos.css';
 
 
-const MeusCadastros = () => {
-    const [selectedAnimal, setSelectedAnimal] = useState(null);
-    const [modalOpen, setModalOpen] = useState(false);
-    const navigate = useNavigate(); // Navegação
-
-    const animaisCadastrados = [
-        { id: 1, nome: 'Rex', pedidos: 5, foto: 'imagens/image.png' },
-        { id: 2, nome: 'Mimi', pedidos: 3, foto: 'url-da-imagem-mimi' },
-    ];
+const MeusPedidos = () => {
+    const [selectedRequest, setSelectedRequest] = useState(null);
 
     const solicitacoes = [
-        { animalId: 1, solicitantes: [{ nome: 'João', id: 1 }, { nome: 'Maria', id: 2 }] },
-        { animalId: 2, solicitantes: [{ nome: 'Carlos', id: 3 }] },
+        { id: 1, nomePet: 'Rex', status: 'Em análise', imgSrc: 'imagens/image.png' }, // Adicione a URL da imagem
+        { id: 2, nomePet: 'Mimi', status: 'Aprovado', imgSrc: 'link_da_imagem_mimi.jpg' }, // Adicione a URL da imagem
+        // Outras solicitações
     ];
 
-    const handleAnimalClick = (animal) => {
-        setSelectedAnimal(animal);
-        setModalOpen(true);
+    const handleViewProfile = (solicitacao) => {
+        console.log(`Visualizando perfil do pet: ${solicitacao.nomePet}`);
     };
 
-    const closeModal = () => {
-        setModalOpen(false);
-        setSelectedAnimal(null);
-    };
-
-    const handleCadastrarAnimal = () => {
-        navigate('/cadastrar-animal'); // Redireciona para a página de cadastro de animal
+    const handleChat = (solicitacao) => {
+        setSelectedRequest(solicitacao);
     };
 
     return (
         <div>
             <Header /> {/* Adiciona o Header */}
 
-            <div className="meus-cadastros-page">
-                <h1>Meus Cadastros</h1>
-                <button onClick={handleCadastrarAnimal} className="button-container-cadastro">
-                    Cadastrar Novo Animal 
-                </button>
-
-                <ul className="cadastros-list">
-                    {animaisCadastrados.map(animal => (
-                        <li key={animal.id} className="cadastro-item" onClick={() => handleAnimalClick(animal)}>
-                            <img src="imagens/image.png" alt={animal.nome} className="animal-image" />
-                            <div className="cadastro-info">
-                                <span>
-                                    {animal.nome} - {animal.pedidos} pedidos
-                                </span>
-                            </div>
+            <div className="meus-pedidos-page">
+                <h1>Meus Pedidos de Adoção</h1>
+                <ul>
+                    {solicitacoes.map(solicitacao => (
+                        <li key={solicitacao.id}>
+                            <img src={solicitacao.imgSrc} alt={solicitacao.nomePet} className="pet-image-pedidos" />
+                            <span>
+                                {solicitacao.nomePet} - {solicitacao.status}
+                            </span>
+                            <button onClick={() => handleViewProfile(solicitacao)}>Perfil</button>
+                            <button onClick={() => handleChat(solicitacao)}>Chat</button>
                         </li>
                     ))}
                 </ul>
-                
 
-                {modalOpen && selectedAnimal && (
-                    <div className="modal-overlay">
-                        <div className="modal-content">
-                            <button className="close-modal" onClick={closeModal}>X</button>
-                            <h2>{selectedAnimal.nome}</h2>
-                            <img src={selectedAnimal.foto} alt={selectedAnimal.nome} className="modal-animal-meu-cadastros" />
-                            <p>Solicitações de Adoção:</p>
-                            <ul className="solicitantes-list">
-                                {solicitacoes
-                                    .find(s => s.animalId === selectedAnimal.id)
-                                    ?.solicitantes.map(s => (
-                                        <li key={s.id} className="solicitante-item">
-                                            {s.nome}
-                                            <div className="button-container-cad">
-                                                <Link to={`/perfil/${s.id}`} className="button-container-cadastro">Ver Perfil</Link>
-                                                <Link to={`/chat/${s.id}`} className="button-container-cadastro">Chat</Link>
-                                            </div>
-                                        </li>
-                                    ))}
-                            </ul>
+                {/* Chat com o doador */}
+                {selectedRequest && (
+                    <div className="chat">
+                        <h2>Conversando sobre {selectedRequest.nomePet}</h2>
+                        <div className="chat-box">
+                            {/* Lógica para exibir mensagens */}
                         </div>
+                        <input type="text" placeholder="Escreva uma mensagem" />
                     </div>
                 )}
             </div>
@@ -85,4 +54,4 @@ const MeusCadastros = () => {
     );
 };
 
-export default MeusCadastros;
+export default MeusPedidos;
