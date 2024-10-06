@@ -1,0 +1,71 @@
+/* Estilo para o contêiner da página de login */
+.login-container {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100vh; /* Ocupa toda a altura da tela */
+    background-color: #f8f9fa; /* Cor de fundo opcional */
+}
+
+/* Centraliza e estiliza a div de login */
+.login-page {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 15px;
+    text-align: center;
+    padding: 20px; /* Espaçamento interno */
+    margin-left: 35px;
+    margin-top: 15px;
+
+}
+
+/* Estilo para o título */
+.login-page h1 {
+    margin-bottom: 20px;
+    font-size: calc(1.375rem + 1.5vw);
+}
+
+/* Estilo para os inputs do formulário */
+.login-page input[type="text"],
+.login-page input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #ccc;
+    border-radius: 5px; /* Caixas arredondadas */
+    font-size: 16px;
+    box-sizing: border-box; /* Garante que o padding não ultrapasse a largura definida */
+}
+
+/* Estilo para o botão de submit */
+.login-page button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0056b3;    ;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-page button:hover {
+    background-color: #0056b3; /* Efeito hover */
+}
+
+/* Estilo para o texto de alternar entre Login e Registro */
+.login-page p {
+    margin-top: 20px;
+    color: #000!important;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+}
+
+.login-page p:hover {
+    text-decoration: underline;
+}
+
+.nav-button-footer{
+    
+}

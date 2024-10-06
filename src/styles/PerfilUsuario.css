@@ -1,0 +1,30 @@
+/* PerfilUsuario.css */
+.perfil-container {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+.perfil-foto {
+    margin-right: 20px;
+}
+
+.foto-perfil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc; /* Borda opcional */
+}
+
+.foto-placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #e0e0e0; /* Cor de fundo quando não há foto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #888;
+}

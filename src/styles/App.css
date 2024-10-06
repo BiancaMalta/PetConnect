@@ -1,0 +1,233 @@
+/* Estilos para a página inicial */
+body, html {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Poppins', sans-serif!important;
+    background-color: #C4E9F8!important;
+    color: #000 !important;
+
+
+    /* overflow: hidden; Remova se não precisar bloquear a rolagem */
+}
+
+.home-content {
+    z-index: 1; /* Garante que o conteúdo esteja acima do menu */
+    padding: 80px 20px; /* Adiciona 20px de padding nas laterais */
+    margin-top: 90%; /* Isso pode ser ajustado, dependendo do layout desejado */
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    height: 100vh; /* Usa a altura total da viewport */
+    background: url('/public/imagens/Home.svg') no-repeat center center fixed; /* Caminho da imagem */
+    background-size: cover; /* Ajusta a imagem para cobrir a tela inteira */
+    position: relative; /* Necessário para o posicionamento absoluto do menu */
+}
+
+.home-header {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Ajuste conforme necessário */
+}
+
+.p {
+    margin-top: 80%;
+    font-size: 16px!important;
+}
+
+
+.description {
+    font-size: 1.2rem;
+    color: #333;
+    padding: 0 20px;
+    margin-bottom: 30px;
+    background-color: rgba(255, 255, 255, 0.8); /* Para dar contraste com o background */
+    border-radius: 10px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.action-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.action-button:hover {
+    background-color: #444;
+}
+
+
+
+/* Específico para a Home (caso precise de um fundo diferente) */
+.home-page {
+    background-color: #f0f8ff; /* Ou outro fundo desejado */
+}
+
+/* Outros estilos */
+.line {
+    width: 100%;
+    height: 3px;
+    background-color: #000; /* Cor das linhas do menu */
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin: 5px 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #000; /* Cor do texto do menu */
+    padding: 10px; /* Adiciona padding ao link */
+    display: block; /* Faz o link ocupar toda a largura */
+}
+
+.menu a:hover {
+    color: #007BFF; /* Cor do texto quando passar o mouse */
+}
+
+
+/* Estilo dos botões de filtro */
+/* Estilo dos botões de filtro */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os botões */
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50%; /* Faz os botões ficarem redondos */
+    width: 60px; /* Tamanho fixo para manter o botão circular */
+    height: 60px; /* Tamanho fixo para manter o botão circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #45a049;
+}
+
+
+
+
+
+
+/* Estilo para a página de fundo */
+.page-background {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* Cor de fundo da página */
+}
+
+/* Centraliza e estiliza a div de login */
+.login-page {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* Estilo para o título */
+.login-page h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Estilo para os inputs do formulário */
+.login-page input[type="text"],
+.login-page input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #ccc;
+    border-radius: 25px; /* Caixas arredondadas */
+    font-size: 16px;
+    box-sizing: border-box; /* Garante que o padding não ultrapasse a largura definida */
+}
+
+/* Estilo para o botão de submit */
+.login-page button {
+    width: 100%;
+    padding: 10px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-page button:hover {
+    background-color: #0056b3; /* Efeito hover */
+}
+
+/* Estilo para o texto de alternar entre Login e Registro */
+.login-page p {
+    margin-top: 20px;
+    color: #000;
+    cursor: pointer;
+}
+
+.login-page p:hover {
+    text-decoration: underline;
+}
+
+
+/* Estilo para a seção de chat */
+.chat {
+    margin-top: 20px; /* Espaço acima do chat */
+    background-color: #f1f1f1; /* Cor de fundo do chat */
+    border-radius: 10px; /* Arredondar os cantos */
+    padding: 15px;
+}
+
+.chat h2 {
+    margin-bottom: 10px;
+}
+
+.chat-box {
+    max-height: 200px; /* Altura máxima do chat */
+    overflow-y: auto; /* Adiciona rolagem se necessário */
+    background-color: white; /* Cor de fundo da caixa de chat */
+    border-radius: 10px; /* Arredondar os cantos */
+    padding: 10px;
+}
+
+.chat input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 20px; /* Caixa de entrada arredondada */
+    margin-top: 10px; /* Espaço acima da entrada */
+}

@@ -1,0 +1,62 @@
+/* Estilo para a página de cadastros */
+.meus-cadastros-page {
+    width: 100%;
+    max-width: 400px; /* Limita a largura da página */
+    padding: 20px;
+    border-radius: 15px; /* Caixas arredondadas */
+    text-align: center; /* Centraliza o texto */
+}
+
+/* Estilo para o título */
+.meus-cadastros-page h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #000; /* Cor do título */
+}
+
+/* Estilo para a lista de animais */
+.meus-cadastros-page ul {
+    list-style-type: none; /* Remove marcadores da lista */
+    padding: 0;
+}
+
+/* Estilo para cada item da lista */
+.meus-cadastros-page li {
+    background-color: #f1f1f1; /* Cor de fundo para os itens */
+    border-radius: 10px; /* Arredonda os cantos */
+    padding: 15px;
+    margin: 10px 0; /* Espaçamento entre os itens */
+    position: relative; /* Para posicionar os elementos */
+    display: flex; /* Flexbox para alinhar imagem e texto */
+    align-items: center; /* Centraliza verticalmente */
+    cursor: pointer;
+}
+.button-container-cadastro{
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.modal-animal-meu-cadastros{
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+.button-container-cad{
+    display: flex;
+    gap: 10px;
+    margin-left: 22%;
+    margin-right: 0;
+    
+}
+a{
+    color:white;
+    text-decoration: none;
+    
+}

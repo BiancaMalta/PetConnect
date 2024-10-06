@@ -1,0 +1,11 @@
+.header {
+    width: 100%;
+    overflow: hidden; /* Oculta qualquer conteúdo que exceda a altura do cabeçalho */
+  }
+  
+  .header-image {
+    width: 100%;    /* Faz a imagem cobrir toda a largura do header */
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    display: block; /* Garante que não haja espaço em branco abaixo da imagem */
+  }
+  

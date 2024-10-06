@@ -1,0 +1,148 @@
+.page-background {
+    background-color: #C4E9F8!important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+h1.section-title {
+    margin-top: 15px; 
+    text-align: left;
+    margin-left: 20px;
+    font-size: 26px!important;
+    color: black;
+}
+p{
+    margin-bottom:0 !important;
+    text-align: left;
+    font-size: 12px;
+
+}
+.filter-buttons {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+    gap: 5px;
+    margin-bottom: 0!important;
+}
+
+.filter-buttons button {
+    border-radius: 5px;
+    padding: 3px 14px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.pets-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px;
+    height: 220px;
+
+}
+
+.pet-card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+
+}
+
+.pet-image {
+    width: 100%;
+    height: auto;
+}
+
+.pet-info {
+    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.pet-location {
+    display: flex;
+    align-items: center;
+}
+
+.location-icon {
+    width: 8px;
+    height: auto;
+    margin-right: 8px;
+}
+.modal-pet-image{
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    display: block; 
+}
+.adopt-button{
+    background-color: #0056b3;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color:#ffff;
+}
+
+/* Adiciona o efeito de desfoque quando o modal está aberto */
+.blur-background {
+    filter: blur(5px);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(50, 50, 50, 0.8); /* Fundo escuro semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que o modal estará acima de todos os elementos */
+}
+
+.modal-content {
+    background-color: #e9ecef!important; /* Cor de fundo do modal */
+    padding: 20px;
+    border-radius: 15px!important; /* Borda mais arredondada para combinar com o estilo */
+    width: 400px;
+    max-width: 90vw; /* Ajusta para telas menores */
+    text-align: center;
+    position: relative;
+    z-index: 1010; /* Garante que o conteúdo está acima do overlay */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para dar destaque */
+}
+
+/* Estilo do botão de fechar o modal */
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333; /* Cor do botão X */
+}
+
+.close-modal:hover {
+    color: red; /* Efeito hover no botão de fechar */
+}
+
+
+.adopt-button:hover {
+    background-color: #0056b3; /* Cor mais escura no hover */
+}
+
+/* Estilo para desfocar o conteúdo de fundo quando o modal estiver aberto */
+.modal-open .pets-grid {
+    filter: blur(5px);
+}
