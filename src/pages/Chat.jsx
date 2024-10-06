@@ -1,9 +1,10 @@
 // src/components/Chat.jsx
 import React from 'react';
-
+import Header from '../components/Header';
 const Chat = () => {
     return (
-        <div className="chat-page">
+        <div >
+            <Header /> {/* Adiciona o Header */}
             <h1>Chat com o Doar</h1>
             <div className="chat-container">
                 {/* Aqui você pode implementar a lógica do chat */}
