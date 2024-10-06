@@ -1,45 +1,47 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; 
+import React from 'react'; // Removido useState
+import { useNavigate, useLocation } from 'react-router-dom';
+import Header from '../components/Header'; // Importa o header
+import { useAuth } from '../context/AuthContext';
+import '../styles/LoginPage.css';
+
 
 const LoginPage = () => {
-    const [isRegistered, setIsRegistered] = useState(true);
     const navigate = useNavigate();
-    const { setIsAuthenticated, setUserType } = useAuth(); 
+    const location = useLocation(); // Captura a localização atual
+    const { setIsAuthenticated, setUserType } = useAuth();
+
+    // Obtendo o local de origem (se disponível)
+    const from = location.state?.from || '/meus-pedidos'; // Valor padrão
 
     const handleLogin = (e) => {
-        e.preventDefault(); 
-        setIsAuthenticated(true);
-        const userType = 'adotante'; 
+        e.preventDefault();
+        setIsAuthenticated(true); // Usuário autenticado
+        const userType = 'adotante'; // Simulação da lógica de autenticação
         setUserType(userType);
 
         if (userType === 'doador') {
-            navigate('/meus-cadastros');
+            navigate('/meus-cadastros'); // Redireciona doador
         } else {
-            navigate('/meus-pedidos'); 
+            navigate(from); // Redireciona para a página de origem
         }
     };
 
-    const handleRegister = (e) => {
-        e.preventDefault(); 
-        setIsAuthenticated(true); // Após registro, o usuário é autenticado
-        setUserType('doador'); // Defina como doador por padrão, ou ajuste conforme necessário
-        navigate('/meus-cadastros'); // Após registro, redireciona para meus cadastros
+    const handleRegisterRedirect = () => {
+        navigate('/cadastrar-usuario'); // Redireciona para a página de cadastro de usuário
     };
 
     return (
-        <div className="page-background">
+        <div>
+            <Header /> {/* Adiciona o Header */}
             <div className="login-page">
-                <h1>{isRegistered ? 'Login' : 'Registro'}</h1>
-                <form>
+                <h1>Login</h1>
+                <form onSubmit={handleLogin}>
                     <input type="text" placeholder="Email" required />
                     <input type="password" placeholder="Senha" required />
-                    <button type="submit" onClick={isRegistered ? handleLogin : handleRegister}>
-                        {isRegistered ? 'Entrar' : 'Registrar'}
-                    </button>
+                    <button type="submit">Entrar</button>
                 </form>
-                <p onClick={() => setIsRegistered(!isRegistered)}>
-                    {isRegistered ? 'Não tem conta? Registre-se aqui.' : 'Já tem conta? Faça login aqui.'}
+                <p onClick={handleRegisterRedirect} style={{ cursor: 'pointer', color: 'blue' }}>
+                    Não tem conta? Registre-se aqui.
                 </p>
             </div>
         </div>
