@@ -1,18 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/App.css';
-import { useAuth } from '../context/AuthContext'; 
-
+import { useAuth } from '../context/AuthContext'; // Caminho correto para AuthContext
 
 const Home = () => {
     const navigate = useNavigate();
-    const { isAuthenticated, userType } = useAuth(); 
+    const { isAuthenticated, userType } = useAuth(); // Utilize o contexto
 
-    const irParaAdocao = () => {
-        navigate('/adotar'); 
-    };
-
-    const irParaDoacao = () => {
+    const handleStartClick = () => {
         if (isAuthenticated) {
             // Redireciona com base no tipo de usuário
             if (userType === 'doador') {
@@ -21,7 +16,7 @@ const Home = () => {
                 navigate('/meus-pedidos'); // Redireciona adotante para meus pedidos
             }
         } else {
-            navigate('/login');
+            navigate('/adotar'); // Redireciona para a página de adoção se não estiver autenticado
         }
     };
 
@@ -33,8 +28,7 @@ const Home = () => {
                     Há milhares de pets ansiosos por encontrar um lar cheio de amor e carinho. Você pode fazer a diferença...
                 </p>
                 <div className="button-container">
-                    <button className="action-button" onClick={irParaAdocao}>Adotar!</button>
-                    <button className="action-button" onClick={irParaDoacao}>Doar!</button>
+                    <button className="action-button" onClick={handleStartClick}>Começar</button>
                 </div>
             </div>
         </div>
