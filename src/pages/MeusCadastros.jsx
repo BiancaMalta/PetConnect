@@ -1,57 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
-import '../styles/MeusPedidos.css';
+import '../styles/PerfilUsuario.css'; // Importa o CSS
 
+const PerfilUsuario = () => {
+    const [usuario, setUsuario] = useState({});
 
-const MeusPedidos = () => {
-    const [selectedRequest, setSelectedRequest] = useState(null);
-
-    const solicitacoes = [
-        { id: 1, nomePet: 'Rex', status: 'Em análise', imgSrc: 'imagens/image.png' }, // Adicione a URL da imagem
-        { id: 2, nomePet: 'Mimi', status: 'Aprovado', imgSrc: 'link_da_imagem_mimi.jpg' }, // Adicione a URL da imagem
-        // Outras solicitações
-    ];
-
-    const handleViewProfile = (solicitacao) => {
-        console.log(`Visualizando perfil do pet: ${solicitacao.nomePet}`);
-    };
-
-    const handleChat = (solicitacao) => {
-        setSelectedRequest(solicitacao);
-    };
+    useEffect(() => {
+        const usuarioData = localStorage.getItem('usuario');
+        if (usuarioData) {
+            setUsuario(JSON.parse(usuarioData));
+        }
+    }, []);
 
     return (
         <div>
             <Header /> {/* Adiciona o Header */}
-
-            <div className="meus-pedidos-page">
-                <h1>Meus Pedidos de Adoção</h1>
-                <ul>
-                    {solicitacoes.map(solicitacao => (
-                        <li key={solicitacao.id}>
-                            <img src={solicitacao.imgSrc} alt={solicitacao.nomePet} className="pet-image-pedidos" />
-                            <span>
-                                {solicitacao.nomePet} - {solicitacao.status}
-                            </span>
-                            <button onClick={() => handleViewProfile(solicitacao)}>Perfil</button>
-                            <button onClick={() => handleChat(solicitacao)}>Chat</button>
-                        </li>
-                    ))}
-                </ul>
-
-                {/* Chat com o doador */}
-                {selectedRequest && (
-                    <div className="chat">
-                        <h2>Conversando sobre {selectedRequest.nomePet}</h2>
-                        <div className="chat-box">
-                            {/* Lógica para exibir mensagens */}
-                        </div>
-                        <input type="text" placeholder="Escreva uma mensagem" />
-                    </div>
-                )}
+            <h1>Perfil do Usuário</h1>
+            <div className="perfil-container">
+                <div className="perfil-foto">
+                    {usuario.foto ? (
+                        <img src={usuario.foto} alt="Foto de Perfil" className="foto-perfil" />
+                    ) : (
+                        <div className="foto-placeholder">Sem Foto</div>
+                    )}
+                </div>
+                <div className="perfil-info">
+                    <p><strong>Nome:</strong> {usuario.nome} {usuario.sobrenome}</p>
+                    <p><strong>Email:</strong> {usuario.email}</p>
+                    <p><strong>Contato:</strong> {usuario.contato}</p>
+                    <p><strong>Sobre:</strong> {usuario.sobre}</p>
+                </div>
             </div>
         </div>
     );
 };
 
-export default MeusPedidos;
+export default PerfilUsuario;
