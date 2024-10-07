@@ -4,50 +4,33 @@ import Footer from '../components/Footer';
 import Banner from '../components/Banner'; 
 import Header from '../components/Header'; 
 import '../styles/Adotar.css';
+import { getAllPets } from '../services/petServices';
+
 
 const Adotar = ({ onPageChange }) => {
     const [selectedPet, setSelectedPet] = useState(null);
     const [isAuthenticated] = useState(false);
     const navigate = useNavigate();
-
-    const pets = [
-        {
-            id: 1,
-            nome: 'Breninho lindo',
-            tipo: 'Gato',
-            descricao: '2 anos',
-            localizacao: 'Bairro: Biancopólis',
-            foto: '/imagens/image.png',
-            raca: 'Persa',
-            porte: 'Grande',
-            sexo: 'Macho',
-            castrado: true,
-            estado: 'Uberlândia',
-            cidade: 'Minas Gerais',
-        },
-        {
-            id: 2,
-            nome: 'Bonitão da UFU',
-            tipo: 'Gato',
-            descricao: '3 anos',
-            localizacao: 'Bairro: Meu coração',
-            foto: '/imagens/image.png',
-            raca: 'Siamês',
-            porte: 'Giganteee d++',
-            sexo: 'Macho Alfa',
-            castrado: false,
-            estado: 'Uberaba',
-            cidade: 'Minas Gerais',
-        },
-    ];
+    const [pets1, setPets] = useState([]);
+    const [filters, setFilters] = useState({});
 
     useEffect(() => {
+        const fetchPets = async () => {
+            try {
+                const petsList = await getAllPets(filters);
+                setPets(petsList);
+            } catch (error) {
+                console.error('Failed to fetch pets:', error);
+            }
+        };
+
+        fetchPets();
         if (typeof onPageChange === 'function') {
             onPageChange();
         } else {
             console.error("onPageChange não é uma função");
         }
-    }, [onPageChange]);
+    }, [onPageChange, filters]);
 
     const handlePetClick = (pet) => {
         setSelectedPet(pet);
@@ -73,7 +56,13 @@ const Adotar = ({ onPageChange }) => {
             navigate('/login', { state: { from: '/meus-cadastros' } });
         }
     };
-
+    const handleFilterClick = (species) => {
+        if (species === '') {
+            setFilters({});
+        } else {
+            setFilters({ petSpecie: species });
+        }
+    };
     return (
         <div>
             <Header />
@@ -81,22 +70,22 @@ const Adotar = ({ onPageChange }) => {
 
             <h1 className="section-title">Adote um Pet</h1>
             <div className="filter-buttons">
-                <button>Filtro</button>
-                <button>Cachorro</button>
-                <button>Gato</button>
-                <button>Favoritos</button>
+            <button onClick={() => handleFilterClick('')}>Todos</button>
+            <button onClick={() => handleFilterClick('Dog')}>Cachorro</button>
+            <button onClick={() => handleFilterClick('Cat')}>Gato</button>
+            <button>Filtros</button>
             </div>
 
             <div className="pets-grid">
-                {pets.map((pet) => (
-                    <div key={pet.id} className="pet-card" onClick={() => handlePetClick(pet)}>
-                        <img src={pet.foto} alt={pet.nome} className="pet-image" />
+                {pets1.map((pet) => (
+                    <div key={pet._id} className="pet-card" onClick={() => handlePetClick(pet)}>
+                        <img src={pet.pictures[0]} alt={pet.name} className="pet-image" />
                         <div className="pet-info">
-                            <p>{pet.nome}, {pet.descricao}</p>
+                            <p>{pet.name}, {pet.about}</p>
                             <div className="pet-location">
                                 <p>
                                     <img src="/imagens/Vector.svg" alt="Localização" className="location-icon" />
-                                    <span>{pet.localizacao}</span>
+                                    <span>{pet.adress.city}</span>
                                 </p>
                             </div>
                         </div>
@@ -108,15 +97,15 @@ const Adotar = ({ onPageChange }) => {
                 <div className="modal-overlay">
                     <div className="modal-content">
                         <button className="close-modal" onClick={closeModal}>X</button>
-                        <h2>{selectedPet.nome}</h2>
-                        <img src={selectedPet.foto} alt={selectedPet.nome} className="modal-pet-image" />
-                        <p><strong>Descrição:</strong> {selectedPet.descricao}</p>
-                        <p><strong>Raça:</strong> {selectedPet.raca}</p>
-                        <p><strong>Porte:</strong> {selectedPet.porte}</p>
-                        <p><strong>Sexo:</strong> {selectedPet.sexo}</p>
-                        <p><strong>Castrado:</strong> {selectedPet.castrado ? 'Sim' : 'Não'}</p>
-                        <p><strong>Estado:</strong> {selectedPet.estado}</p>
-                        <p><strong>Cidade:</strong> {selectedPet.cidade}</p>
+                        <h2>{selectedPet.name}</h2>
+                        <img src={selectedPet.pictures[0]} alt={selectedPet.name} className="modal-pet-image" />
+                        <p><strong>Descrição:</strong> {selectedPet.about}</p>
+                        <p><strong>Raça:</strong> {selectedPet.petSpecie}</p>
+                        <p><strong>Porte:</strong> {selectedPet.size}</p>
+                        <p><strong>Sexo:</strong> {selectedPet.sex}</p>
+                        <p><strong>Castrado:</strong> {selectedPet.neutered ? 'Sim' : 'Não'}</p>
+                        <p><strong>Estado:</strong> {selectedPet.adress.city}</p>
+                        <p><strong>Cidade:</strong> {selectedPet.adress.city}</p>
                         <button className="adopt-button" onClick={handleAdoptClick}>Adotar</button>
                     </div>
                 </div>
